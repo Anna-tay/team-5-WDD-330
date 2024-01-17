@@ -1,3 +1,7 @@
 https://trello.com/b/igSzBNz3/wdd-330-team-5
 Anna Taylor
+<<<<<<< HEAD
 Sheldon Uchytil
+=======
+Spencer Lamoreaux
+>>>>>>> b1f6a6a (name)
