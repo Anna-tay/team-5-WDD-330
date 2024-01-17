@@ -9,15 +9,27 @@ export function qs(selector, parent = document) {
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
-export function setLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+export function setLocalStorage(key, newData) {
+  // Retrieve existing data from local storage
+  const existingData = JSON.parse(localStorage.getItem(key));
+
+  // Check if existingData is an array, if not, treat it as a single item array
+  const dataArray = Array.isArray(existingData) ? existingData : [existingData];
+
+  // Merge data
+  const updatedData = [...dataArray, newData];
+
+  // Store the merged data back in local storage
+  localStorage.setItem(key, JSON.stringify(updatedData));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
 }
