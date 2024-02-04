@@ -5,7 +5,19 @@ function renderCartContents() {
   if (cartItems) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+    // Calculate and display the total
+    const total = calculateTotal(cartItems);
+    document.querySelector("#totalPrice").innerText = `Total: $${total.toFixed(2)}`;
   }
+}
+
+function calculateTotal(cartItems) {
+  let total = 0;
+  for (const item of cartItems) {
+    total += item.FinalPrice;
+  }
+  return total;
 }
 
 function cartItemTemplate(item) {
