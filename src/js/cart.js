@@ -2,12 +2,10 @@ import { getLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item)); //old code they gave us. But local storage is not saving in array
-  // const htmlItems = cartItemTemplate(cartItems);
-
-  document.querySelector('.product-list').innerHTML = htmlItems.join(''); //old code
-  // document.querySelector('.product-list').innerHTML = htmlItems;
-
+  if (cartItems) {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  }
 }
 
 function cartItemTemplate(item) {
