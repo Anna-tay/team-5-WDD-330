@@ -36,6 +36,53 @@ export function renderListWithTemplate(
   parentElement.insertAdjacentHTML(position, htmlString.join(""));
 }
 
+//week 05 team assignment
+export function renderWithTemplate(
+  templateFn,
+  parentElement,
+  data,
+  callback,
+  position = "afterbegin",
+  clear = true
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  // const htmlString = list.map(templateFn);
+  // parentElement.insertAdjacentHTML(position, templateFn);
+  parentElement.insertAdjacentHTML(position, htmlString.join(""));
+  if(callback){
+    callback(data);
+  }
+}
+
+function loadTemplate(path) {
+  // this is called currying and can be very helpful.
+  return async function () {
+      const res = await fetch(path);
+      if (res.ok) {
+      const html = await res.text();
+      return html;
+      }
+  };
+
+
+}
+
+export function loadHeaderFooter(){
+  const headerTemplateFn = loadTemplate("/partials/header.html");
+  const footerTemplateFn = loadTemplate("/partials/footer.html");
+
+  const header = document.querySelector('#main-header');
+  const footer = document.querySelector('#main-footer');
+
+  renderWithTemplate(headerTemplateFn, header);
+  renderWithTemplate(footerTemplateFn, footer);
+
+
+}
+
+
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
