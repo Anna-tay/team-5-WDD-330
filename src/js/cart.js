@@ -2,9 +2,25 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  if (cartItems) {
+
+  if (cartItems && cartItems.length > 0) {
+    // Cart is not empty
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+    // Calculate and display the total
+    const total = calculateTotal(cartItems);
+    document.querySelector("#totalPrice").innerText = `Total: $${total.toFixed(2)}`;
+    
+    // Show the total price element
+    document.querySelector("#totalPrice").style.display = "block";
+  } else {
+    // Cart is empty
+    // Clear the product list
+    document.querySelector(".product-list").innerHTML = "";
+    
+    // Hide the total price element
+    document.querySelector("#totalPrice").style.display = "none";
   }
 }
 
