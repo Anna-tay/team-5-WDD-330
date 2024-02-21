@@ -1,18 +1,18 @@
 import { setLocalStorage, getParam } from "./utils.mjs";
-import { findProductById } from "./externalServices.mjs";
+import { findProductById } from "./productData.mjs";
 
 const productId = getParam("product");
 console.log(findProductById(productId));
 
 function addProductToCart(product) {
-  // Get existing cart items from local storage
-  const existingCartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+  // Retrieve the existing array from local storage or create an empty array
+  const cartItems = getLocalStorage("so-cart") || [];
 
-  // Add the new product to the existing items
-  existingCartItems.push(product);
+  // Add the new product to the array
+  cartItems.push(product);
 
-  // Save the updated cart items back to local storage
-  setLocalStorage("so-cart", existingCartItems);
+  // Save the updated array back to local storage
+  setLocalStorage("so-cart", cartItems);
 }
 
 // add to cart button event handler
