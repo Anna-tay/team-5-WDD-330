@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
@@ -18,7 +18,7 @@ function productCardTemplate(product) {
 
 export default function productList(selector, category) {
     const element = document.querySelector(selector);
-    const products = getData(category);
+    const products = getProductsByCategory(category);
     console.log(products);
     renderListWithTemplate(productCardTemplate, element, products);
 }

@@ -59,6 +59,32 @@
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form action="./index.html">
+
+          <fieldset> <legend>Shipping</legend>
+            <label for="fname">First Name<input id="fname" type="text" name="fname"></label> 
+            <label for="lname">Last Name<input id="lname" type="text" name="lname"></label>
+            <label for="street">Street<input id="street" type="text" name="street"></label>
+            <label for="city">City<input id="city" type="text" name="city"></label>
+            <label for="state">State<input id="state" type="text" name="state"></label>
+            <label for="zip">Zip<input id="zip" type="number" pattern="[0-9]{5}" name="zip"></label>
+          </fieldset>
+
+          <fieldset> <legend>Payment</legend>
+            <label for="cardNumber">Card number<input id="cardNumber" type="number" pattern="[0-9]{16}" name="cardNumber"></label>
+            <label for="expiration">Expiration<input id="expiration" type="date" placeholder="04-24" name="expiration"></label>
+            <label for="code">Security Code<input id="code" type="number" pattern="[0-9]{3}" name="code"></label>
+          </fieldset>
+
+          <fieldset> <legend>Order Summary</legend>
+            <label for="orderTotal">Item Subtotal</label>
+            <p name="Subtotal" id="Subtotal"></p>
+            <label for="shipping">Shipping Estimate</label>
+            <p id="shipping"></p>
+            <label for="tax">Tax</label>
+            <p id="tax"></p>
+          </fieldset>
+        </form>
       </section>
     </main>
 
